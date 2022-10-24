@@ -42,7 +42,16 @@ router.post("/", async (req, res) => {
 
 // usage de Passport js
 
-
+router.get("/liste_sers",(req,res)=>{
+User.find()
+  .then((user)=>{
+    res.status(201).json({user})
+  })
+  .catch((err)=>{
+    res.status(404).json({message:"impossible d'avoir la liste"})
+    console.log(err);
+  })
+})
 
 router.post("/login", (req, res)=>{
   User.findOne({email : req.body.email})
